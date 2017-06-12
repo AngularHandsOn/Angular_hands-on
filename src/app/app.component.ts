@@ -11,9 +11,19 @@ export class AppComponent {
   title = 'Tour of Heroes';
   heroes: Hero[];
 
+  constructor(private heroService: HeroService) {}
+
   selectedHero: Hero;
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+  }
+
+  getHeroes(): void {
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+  }
+
+  ngOnInit(): void {
+    this.getHeroes();
   }
 }
